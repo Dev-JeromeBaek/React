@@ -1,29 +1,34 @@
 {
-  "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
-  },
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts"
-  ]
+    "compilerOptions": {
+        "outDir": "build/dist", // 빌드 결과물 폴더
+        "module": "esnext", // 빌드 결과의 모듈 방식은 esnext (common.js?)
+        "target": "es5", // 빌드 결과물은 es5 방식으로
+        "lib": ["es6", "dom"], // 라이브러리는 es6 와 dom
+        "sourceMap": true, // .map.js 파일도 함께 생성
+        "allowJs": true, // JS 파일도 컴파일 대상
+        "jsx": "react", // jsx 구문 사용 가능
+        "moduleResolution": "node", // 모듈 해석 방식은 node 처럼
+        "rootDir": "src", // 컴파일할 대상들이 들어있는 폴더 (루트 폴더)
+        "forceConsistentCasingInFileNames": true, // https://github.com/TypeStrong/ts-loader/issues/89
+        "noImplicitReturns": true, // 제대로 리턴 다 안되면 에러
+        "noImplicitThis": true, // this 표현식에 암시적으로 any 로 추론되면
+        "noImplicitAny": true, // 암시적으로 선언되었는데 any 로 추론되면
+        "strictNullChecks": true, // null 이나 undefined 을 서브 타입으로 사용하지 못하게 함
+        "suppressImplicitAnyIndexErrors": true,
+        // 인덱싱 시그니처가 없는 경우, 인덱스를 사용했을때 noImplicitAny 에 의해 에러가 뜨는 것을 방지
+        "noUnusedLocals": true // 사용 안하는 로컬 변수가 있으면 에러
+    },
+    "exclude": [
+            "node_modules",
+            "build",
+            "scripts",
+            "acceptance-tests",
+            "webpack",
+            "jest",
+            "src/setupTests.ts"
+        ]
+        /*,
+          "types": [
+            "typePatches" // 자동으로 패치되기 때문에 이렇게 막아놓은 듯
+          ]*/
 }
