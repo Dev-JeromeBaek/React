@@ -1,16 +1,23 @@
 import * as React from 'react';
 import './App.css';
 
+const logo = require('./logo.svg');
+
 export interface AppProps {
   name: string;
+  company?: string;
 }
 
 export interface AppState {
   age: number;
-  company: string;
+  company_state: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
+  static defaultProps = {
+    company: 'Studio XID'
+  };
+
   private _interval: number;
 
   constructor(props: AppProps) {
@@ -18,7 +25,7 @@ class App extends React.Component<AppProps, AppState> {
     super(props);
     this.state = {
       age: 35,
-      company: 'Studio XID'
+      company_state: 'Studio XID'
     };
     this._reset = this._reset.bind(this);
     this._change = this._change.bind(this);
@@ -63,12 +70,24 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    console.log('App render');
     return (
-      <div>
-        <h2>Hello {this.props.name} - {this.state.age}</h2>
-        <button onClick={this._reset}>리셋</button>
-        <input type="text" onChange={this._change} value={this.state.company} />
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>{this.props.name}, {this.state.age}</h2>
+          
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <div>
+          <StatelessComponent name="Baek">나는 JeromeBaek이다.</StatelessComponent>
+        </div>
+        <div>
+          <h2>Hello {this.props.name}, {this.props.company}, {this.state.age}</h2>
+          <button onClick={this._reset}>회춘</button>
+          <input type="text" onChange={this._change} value={this.state.company_state} />
+        </div>
       </div>
     );
   }
@@ -81,9 +100,22 @@ class App extends React.Component<AppProps, AppState> {
 
   private _change(e: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
-      company: e.target.value
+      company_state: e.target.value
     });
   }
 }
+
+const StatelessComponent: React.SFC<AppProps> = ({name, company = 'Home2', children}) => {
+  return (
+    <h2>{name}, {company}, {children}</h2>
+  );
+};
+
+// function 사용법 #1
+/*
+StatelessComponent.defaultProps = {
+  company: 'Home'
+};
+*/
 
 export default App;

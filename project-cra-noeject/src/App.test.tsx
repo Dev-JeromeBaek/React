@@ -4,5 +4,5 @@ import App from './App';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App name="Jerome" />, div);
+  ReactDOM.render(<App name="Jerome" company="Studio XXX"/>, div);
 });
