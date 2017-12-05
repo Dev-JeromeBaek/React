@@ -16,13 +16,13 @@
         "curly": true,
         "eofline": false,
         "forin": true,
-        "indent": [ true, "spaces" ],
+        "indent": [true, "spaces"],
         "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,
         "label-position": true,
-        "max-line-length": [ true, 120 ],
+        "max-line-length": [true, 120],
         "member-ordering": [
             true,
             "public-before-private",
@@ -34,7 +34,6 @@
         "no-bitwise": true,
         "no-console": [
             true,
-            "log",
             "error",
             "debug",
             "info",
@@ -68,7 +67,7 @@
 
         "trailing-comma": [false],
 
-        "triple-equals": [ true, "allow-null-check" ],
+        "triple-equals": [true, "allow-null-check"],
         "typedef": [
             true,
             "parameter",
