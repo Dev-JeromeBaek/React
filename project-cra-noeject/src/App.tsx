@@ -11,24 +11,54 @@ export interface AppProps {
 export interface AppState {
   age: number;
   company_state: string;
+  todo: string[];
 }
 
-class App extends React.Component<AppProps, AppState> {
+interface CustomTextInputProps {
+  inputRef(element: HTMLInputElement): void;
+}
+
+function CustomTextInput(props: CustomTextInputProps) {
+  return (
+    <div>
+      <input ref={props.inputRef}/>
+    </div>
+  );
+}
+
+function Parent(props: ParentProps) {
+  return (
+    <div>
+      My input: <CustomTextInput inputRef={props.inputRef} />
+    </div>
+  );
+}
+
+interface ParentProps {
+  inputRef(element: HTMLInputElement): void;
+}
+
+class App extends React.PureComponent<AppProps, AppState> {
+
   static defaultProps = {
     company: 'Studio XID'
   };
 
   private _interval: number;
 
+  private inputElement: HTMLInputElement | null;
+
   constructor(props: AppProps) {
     console.log('App constructor');
     super(props);
     this.state = {
       age: 35,
+      todo: ['First'],
       company_state: 'Studio XID'
     };
     this._reset = this._reset.bind(this);
     this._change = this._change.bind(this);
+    this._rollback = this._rollback.bind(this);
   }
 
   componentWillMount() {
@@ -85,11 +115,27 @@ class App extends React.Component<AppProps, AppState> {
         </div>
         <div>
           <h2>Hello {this.props.name}, {this.props.company}, {this.state.age}</h2>
-          <button onClick={this._reset}>회춘</button>
+          <h1>{this.state.todo.join(', ')}</h1>
+
+          <button onClick={this._reset}>회춘</button><br/><br/>
+          <button onClick={this._rollback}>pureComponent</button><br/><br/>
           <input type="text" onChange={this._change} value={this.state.company_state} />
+        </div>
+        <br/>
+        <div>
+          <h1>Ref</h1>
+          <Parent inputRef={element => this.inputElement = element} />
         </div>
       </div>
     );
+  }
+
+  private _rollback(): void {
+    const todo: string[] = this.state.todo;
+    todo.push('Second');
+    this.setState({
+      todo: todo
+    });
   }
 
   private _reset(): void {
@@ -105,6 +151,7 @@ class App extends React.Component<AppProps, AppState> {
   }
 }
 
+// function 사용법 #2
 const StatelessComponent: React.SFC<AppProps> = ({name, company = 'Home2', children}) => {
   return (
     <h2>{name}, {company}, {children}</h2>
