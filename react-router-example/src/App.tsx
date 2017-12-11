@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route,  NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { RouteComponentProps, Switch, Redirect } from 'react-router';
 
 const logo = require('./logo.svg');
