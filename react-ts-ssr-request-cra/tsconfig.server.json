@@ -1,0 +1,13 @@
+// tsconfig.server.json
+{
+    "compilerOptions": {
+        "outDir": "build-server",
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "baseUrl": "src"
+    }
+}
