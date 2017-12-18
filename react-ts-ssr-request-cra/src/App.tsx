@@ -9,7 +9,7 @@ class App extends React.Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
+          {this.props.children}
         </p>
       </div>
     );

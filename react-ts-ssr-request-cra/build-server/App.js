@@ -7,10 +7,7 @@ class App extends React.Component {
             React.createElement("div", { className: "App-header" },
                 React.createElement("img", { src: "/logo.svg", className: "App-logo", alt: "logo" }),
                 React.createElement("h2", null, "Welcome to React")),
-            React.createElement("p", { className: "App-intro" },
-                "To get started, edit ",
-                React.createElement("code", null, "src/App.tsx"),
-                " and save to reload.")));
+            React.createElement("p", { className: "App-intro" }, this.props.children)));
     }
 }
 exports.default = App;

@@ -26,13 +26,14 @@ staticFiles.forEach(file => {
 });
 
 app.get('*', (req, res) => {
+    console.log(req.url);
     // HTML 파일을 읽어온 것.
     const html = path.join(__dirname, '../build/index.html');
     // HTML 데이터 읽어온 것.
     const htmlData = fs.readFileSync(html).toString();
 
-    const ReactApp = ReactDOMServer.renderToString(React.createElement(App));
-    const renderedHtml = htmlData.replace('{{SSR}}', ReactApp);
+    const ReactApp = ReactDOMServer.renderToString(React.createElement(App, {}, req.url));
+    const renderedHtml = htmlData.replace('<div id="root">{{SSR}}</div>', `<div id="root">${ReactApp}</div><script id="initial-data" type="text/plain" data-json="${req.url}"></script>`);
 
     res.status(200).send(renderedHtml);
 });
