@@ -35,7 +35,11 @@ app.get('*', async (req, res) => {
 
     const user = await App.getInitialState(); 
     const ReactApp = ReactDOMServer.renderToString(React.createElement(App, {user}));
-    const renderedHtml = htmlData.replace('<div id="root">{{SSR}}</div>', `<div id="root">${ReactApp}</div><script id="initial-data" type="text/plain" data-json="${user}"></script>`);
+    const renderedHtml = 
+    htmlData.replace(
+        '<div id="root">{{SSR}}</div>', 
+        `<div id="root">${ReactApp}</div><script id="initial-data" 
+        type="text/plain" data-json="${user}"></script>`);
     res.status(200).send(renderedHtml);
 });
 
